@@ -4,11 +4,14 @@ const bands  = require("express").Router()
 const db = require('../models')
 const {Band} =db
 
+
 //GET
 
 bands.get('/', async(req,res) => {
     try{
-        const foundBands = await Band.findAll()
+        const foundBands = await Band.findAll({
+            order: [ ['available_start_time', 'ASC' ]]
+        })
         res.status(200).json(foundBands)
     } catch (err) {
         res.status(500).json(err)
