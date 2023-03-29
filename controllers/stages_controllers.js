@@ -64,7 +64,7 @@ stages.put('/:id', async(req, res) => {
 
 stages.delete('/:id', async (req, res) => {
     try{
-        const deleteStage = Stage.destroy({
+        const deleteStage = await Stage.destroy({
             where: { 
                 stage_id: req.params.id
             }
