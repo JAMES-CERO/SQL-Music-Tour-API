@@ -4,13 +4,13 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Set_time extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
+   
+    static associate({Band}) {
       // define association here
+      Set_time.belongsTo(Band, {
+        foreignKey: 'set_time_id',
+        as: 'bands'
+      })
     }
   }
   Set_time.init({
