@@ -1,0 +1,83 @@
+//DEPENDENCIES
+const stages = require('express').Router()
+const { application } = require('express')
+const db = require('../models')
+// const stage = require('../models/stage');
+// const { get } = require('./bands_controller')
+const {Stage} = db
+
+//ROUTES
+
+stages.get('/', async (req, res) => {
+    try{
+        const foundStages = await Stage.findAll()
+        res.status(200).json(foundStages)
+    } catch (err){
+        res.status(500).json(err)
+    }
+});
+
+//GET BY ID
+
+stages.get('/:id', async(req, res) => {
+    try {
+        const foundStage = await Stage.findOne({
+            where: { stage_id: req.params.id}
+        })
+        res.status(200).json(foundStage)
+    }catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+//CREATE 
+
+stages.post('/', async(req, res) => {
+    try{
+        const newStage = await Stage.create(req.body)
+        res.status(200).json({
+            message: 'You have add a new Stage',
+            data: newStage
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+//UPDATE
+
+stages.put('/:id', async(req, res) => {
+    try{
+        const updateStage = await Stage.destroy( {
+            where: {
+                stage_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: 'You have update a Stage',
+            data: updateStage
+        })
+    } catch (err){
+        res.status(500).json(err)
+    }
+});
+
+//DELETE
+
+stages.delete('/:id', async (req, res) => {
+    try{
+        const deleteStage = Stage.delete(req, body ,{
+            where: { 
+                stage_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: 'You have delete a Stage',
+            data: deleteStage
+        })
+    }catch(err){
+        res.status(500).json(err)
+    }
+});
+
+module.exports = stages
