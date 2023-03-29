@@ -1,6 +1,5 @@
 //DEPENDENCIES
 const stages = require('express').Router()
-const { application } = require('express')
 const db = require('../models')
 // const stage = require('../models/stage');
 // const { get } = require('./bands_controller')
@@ -48,14 +47,13 @@ stages.post('/', async(req, res) => {
 
 stages.put('/:id', async(req, res) => {
     try{
-        const updateStage = await Stage.destroy( {
+        const updateStage = await Stage.update(req.body, {
             where: {
                 stage_id: req.params.id
             }
         })
         res.status(200).json({
-            message: 'You have update a Stage',
-            data: updateStage
+            message: `You have update ${updateStage}`
         })
     } catch (err){
         res.status(500).json(err)
@@ -66,14 +64,13 @@ stages.put('/:id', async(req, res) => {
 
 stages.delete('/:id', async (req, res) => {
     try{
-        const deleteStage = Stage.delete(req, body ,{
+        const deleteStage = Stage.destroy({
             where: { 
                 stage_id: req.params.id
             }
         })
         res.status(200).json({
-            message: 'You have delete a Stage',
-            data: deleteStage
+            message: `You have delete ${deleteStage}`
         })
     }catch(err){
         res.status(500).json(err)
