@@ -6,7 +6,7 @@ const meet_greet = require('./meet_greet');
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
  
-    static associate({Stage, Stage_event, Meet_greet}) {
+    static associate({Stage, Stage_event, Meet_greet, Set_time}) {
       // define association here
       Event.belongsToMany( Stage, {
         foreignKey: 'event_id',
@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       Event.hasMany(Meet_greet, {
         foreignKey: 'event_id',
         as: 'meet_greets'
+      })
+      Event.hasMany(Set_time, {
+        foreignKey: 'event_id',
+        as: 'set_times'
       })
     }
   }

@@ -5,11 +5,15 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Set_time extends Model {
    
-    static associate({Band}) {
+    static associate({Band, Event}) {
       // define association here
       Set_time.belongsTo(Band, {
         foreignKey: 'set_time_id',
         as: 'bands'
+      })
+      Set_time.belongsTo(Event, {
+        foreignKey: 'event_id',
+        as: 'set_times'
       })
     }
   }
