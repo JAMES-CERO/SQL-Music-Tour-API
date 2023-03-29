@@ -8,16 +8,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate({Band, Event, Stage}) {
       // define association here
       Set_time.belongsTo(Band, {
-        foreignKey: 'set_time_id',
-        as: 'bands'
+        foreignKey: 'band_id',
+        as: 'band'
       })
       Set_time.belongsTo(Event, {
         foreignKey: 'event_id',
-        as: 'events'
+        as: 'event'
       })
       Set_time.belongsTo(Stage, {
         foreignKey: 'stage_id',
-        as: 'stages'
+        as: 'stage'
       })
     }
   }

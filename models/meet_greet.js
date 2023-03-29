@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       })
       Meet_greet.belongsTo( Event, {
         foreignKey: 'event_id',
-        as: 'events'
+        as: 'event'
       })
     }
   }
