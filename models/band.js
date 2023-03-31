@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
 
   class Band extends Model {
     
-    static associate({Meet_Greet, Set_time}) {
+    static associate({Meet_greet, Set_time}) {
 
-      Band.hasMany(Meet_Greet, {
+      Band.hasMany(Meet_greet, {
         foreignKey: 'band_id',
         as: 'meet_greets'
       })
